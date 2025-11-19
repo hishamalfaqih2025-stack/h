@@ -1,41 +1,239 @@
+/* ---------------------------------- */
+/* 1. التنسيقات الأساسية وإعادة الضبط (Reset & Base Styles) */
+/* ---------------------------------- */
 
-.cv-container {
-    /* التحكم في عرض السيرة الذاتية وتوسيطها */
-    width: 80%;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc; /* إطار خفيف */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ظل خفيف */
-    background-color: #ffffff;
+/* استخدام خط عربي عصري وواضح */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+:root {
+    /* تعريف متغيرات الألوان لسهولة التعديل */
+    --primary-color: #007bff; /* أزرق أساسي للمسة احترافية */
+    --secondary-color: #6c757d; /* لون ثانوي للنصوص الأقل أهمية */
+    --background-color: #f4f7f6; /* لون خلفية خفيف */
+    --card-background: #ffffff; /* خلفية البطاقات/الحاويات */
+    --text-color: #333333; /* لون النص الأساسي */
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* تظليل خفيف وأنيق */
+}
+
+/* إعادة تعيين بسيطة لضمان التوافق بين المتصفحات */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    /* خلفية للصفحة بالكامل وخط أساسي */
-    background-color: #f4f4f4;
-    font-family: Tahoma, sans-serif;
-    color: #333;
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
     line-height: 1.6;
+    padding: 20px 0; /* مساحة علوية وسفلية للمحتوى */
+    direction: rtl; /* الاتجاه من اليمين لليسار */
+    text-align: right; /* محاذاة النص لليمين */
 }
 
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3; /* لون أغمق عند المرور */
+}
+
+/* ---------------------------------- */
+/* 2. حاوية السيرة الذاتية (CV Container) */
+/* ---------------------------------- */
+
+.cv-container {
+    max-width: 900px;
+    width: 95%;
+    margin: 40px auto; /* توسيط الحاوية */
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 40px;
+}
+
+/* ---------------------------------- */
+/* 3. ترويسة ومعلومات شخصية (Header & Personal Info) */
+/* ---------------------------------- */
+
 .personal-info {
-    /* تنسيق قسم الرأس (قد تحتاج لـ flexbox أو float هنا!) */
-    display: flex; /* لتنظيم الصورة والنص بجانب بعضهما */
-    align-items: center;
+    display: flex; /* استخدام فليكس بوكس لترتيب الصورة والنص */
+    align-items: center; /* محاذاة العناصر عموديًا في المنتصف */
+    gap: 30px; /* المسافة بين الصورة والنص */
     padding-bottom: 20px;
+    border-bottom: 3px solid var(--primary-color); /* خط فاصل سميك تحت الترويسة */
 }
 
 .profile-pic {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%; /* لجعل الصورة دائرية */
-    margin-left: 20px;
-    border: 3px solid #007BFF; /* إطار ملون حول الصورة */
+    object-fit: cover; /* لضمان ملء الصورة للحجم دون تشويه */
+    border: 4px solid var(--primary-color);
+    flex-shrink: 0; /* منع الصورة من الانكماش */
 }
 
-h3 {
-    /* تنسيق عناوين الأقسام الرئيسية */
-    color: #007BFF; 
-    border-bottom: 2px solid #007BFF; /* خط تحت العنوان */
-    padding-bottom: 5px;
-    margin-top: 30px;
+.header-text h1 {
+    font-size: 2.2em;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.contact-details p {
+    font-size: 1.0em;
+    margin: 2px 0;
+    color: var(--secondary-color);
+}
+
+/* ---------------------------------- */
+/* 4. الأقسام الرئيسية (Sections) */
+/* ---------------------------------- */
+
+section {
+    padding: 25px 0;
+}
+
+section h3 {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    border-right: 5px solid var(--primary-color); /* شريط جانبي يميز العناوين */
+    padding-right: 10px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* ---------------------------------- */
+/* 5. المهارات (Skills) */
+/* ---------------------------------- */
+
+.skills-list {
+    list-style: none; /* إزالة التنقيط الافتراضي */
+    display: flex;
+    flex-wrap: wrap; /* السماح للعناصر بالنزول لسطر جديد */
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.skills-list li {
+    background-color: #e9ecef; /* خلفية خفيفة للمهارات */
+    color: var(--text-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.95em;
+    font-weight: 600;
+    border: 1px solid #dee2e6;
+}
+
+/* ---------------------------------- */
+/* 6. التعليم والخبرة (Education & Experience) */
+/* ---------------------------------- */
+
+.edu-item, .experience p {
+    margin-bottom: 20px;
+    padding-right: 15px;
+    border-right: 2px solid #ced4da; /* خط فاصل خفيف */
+    position: relative;
+}
+
+.edu-item h4 {
+    color: var(--text-color);
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.institution {
+    font-style: italic;
+    color: var(--secondary-color);
+    margin-bottom: 3px;
+}
+
+.date {
+    font-size: 0.9em;
+    color: #495057;
+    display: block; /* لضمان أن يأخذ سطرًا جديدًا */
+}
+
+/* نقطة دائرية عند بداية كل عنصر للجمالية */
+.edu-item::before, .experience p::before {
+    content: '•';
+    color: var(--primary-color);
+    font-size: 1.5em;
+    position: absolute;
+    right: -10px; /* وضعها على يمين الخط الفاصل */
+    top: 0;
+}
+
+/* ---------------------------------- */
+/* 7. التذييل (Footer) */
+/* ---------------------------------- */
+
+.cv-footer {
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+    text-align: center;
+}
+
+.cv-footer p {
+    color: var(--secondary-color);
+    font-size: 0.85em;
+}
+
+/* ---------------------------------- */
+/* 8. التجاوب مع الشاشات الصغيرة (Media Queries) */
+/* ---------------------------------- */
+
+@media (max-width: 600px) {
+    .cv-container {
+        padding: 20px;
+        margin: 20px auto;
+    }
+    
+    .personal-info {
+        flex-direction: column; /* ترتيب الصورة والنص عمودياً في الشاشات الصغيرة */
+        text-align: center;
+        gap: 15px;
+    }
+
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+    }
+
+    .header-text {
+        text-align: center;
+    }
+
+    .header-text h1 {
+        font-size: 1.8em;
+    }
+    
+    .contact-details {
+        text-align: center;
+    }
+
+    .skills-list {
+        justify-content: center; /* توسيط المهارات */
+    }
+
+    /* إلغاء الشريط الجانبي في الشاشات الصغيرة */
+    section h3 {
+        border-right: none;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .edu-item, .experience p {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .edu-item::before, .experience p::before {
+        right: auto;
+        left: 0;
+    }
 }
